@@ -1,0 +1,46 @@
+/* PARALLAX EFFECT CLASSES */
+
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__fg {
+  transform: translateZ(0);
+}
+.parallax__bg {
+  transform: translateZ(-1px);
+}
+
+/* WEBKIT TRANSFORM CLASSES*/
+
+.kit:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: ease-out 0.3s;
+    background: #323449;
+}
+.kit:active{
+    background: #54566B;
+}
+.logo:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s;
+}
+.cartkit:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: ease-out 0.5s;
+}

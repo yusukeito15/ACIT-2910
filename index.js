@@ -44,12 +44,8 @@ app.get("/", function(req, resp){
     }
 });
 
-app.get("/style", function(req,resp){
-    resp.sendFile(CLF+"/pageStyle.css")
-});
-
 app.get("/profile", function(req,resp){
-    resp.sendFile(CLF+"/profile.html")
+    resp.sendFile(pF+"/profile.html")
 });
 
 app.post("/logout", function(req, resp){

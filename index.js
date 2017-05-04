@@ -44,6 +44,10 @@ app.get("/", function(req, resp){
     }
 });
 
+app.get("/profile", function(req,resp){
+    resp.sendFile(pF+"/profile.html")
+});
+
 app.post("/logout", function(req, resp){
     req.session.destroy();
     resp.end("success");

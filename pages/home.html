@@ -2,284 +2,36 @@
 <html>
     <head>
         <title>Welcome to Endor!</title>
-        <link rel="stylesheet" type="text/css" href="/style">
+        <link rel="stylesheet" type="text/css" href="/css/homeStyle.css">
         <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
-        <style>
-            /* Hides Scrollbar */
-            ::-webkit-scrollbar { 
-                display: none; 
-            }
-            body{
-                margin: 0;
-                background-color: #212338;
-                overflow-x: hidden;
-            }
-            #homeBg{
-                background-color: #212338;
-                height: 100vh;
-                width: 100vw;
-            }
-            #parallaxBg{
-                background: url(https://media.giphy.com/media/1lRrsraIsEYRW/giphy.gif); 
-                background-size: cover;
-                background-position: center;
-                height: 100vh;
-                width: 100vw;
-            }
-            
-            #parallaxBg2{
-                background: url(http://i.imgur.com/wIx8ECX.jpg);
-                background-size: cover;
-                background-position: center;
-                height: 100vh;
-                width: 100vw;
-    
-            }
-            
-            #homeHeader{
-                width: 100vw;
-                height: 75px;
-                background-color: #212338;
-                vertical-align: top;
-                position: absolute;
-                top:0;
-                z-index: 5;
-            }
-            #homeLogo{
-                height: 75px;
-                width: 75px; 
-/*
-                border : 1px solid;
-                border-radius: 75px;
-*/
-                display: inline-block;
-                float:left;
-                transition: 0.5s;
-            }
-            #login{
-                width: 55px;
-                height: 50px;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 50px;
-                text-shadow: 1px 1px grey;
-                color: aliceblue;
-                display:inline-block;
-                position: absolute;
-                transition: 0.5s;
-                top:0;
-                right:220px;
-                margin: 10px 0 0 10px; 
-            }
-            #support{
-                width: 70px;
-                height: 50px;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 50px;
-                text-shadow: 1px 1px grey;
-                color: aliceblue;
-                display:inline-block;
-                position: absolute;
-                top:0;
-                right:125px;
-                transition: 0.5s;
-                margin: 10px 0 0 10px;    
-            }
-            #cart{
-                width: 50px;
-                height: 50px;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 50px;
-                text-shadow: 1px 1px grey;
-                color: aliceblue;
-                display:inline-block;
-                position: absolute;
-                transition: 0.5s;
-                top:0;
-                right:50px;
-                margin: 10px 0 0 10px; 
-            }
-            
-            /*Menu Section*/
-            
-            #welcomeBanner{
-                text-align: center;
-                vertical-align: middle;
-                width: 50%;
-                height: 300px;
-                margin: 0 auto;
-                top:40vh;
-                z-index: 5;
-                font: 400 75px/1.3 'Oleo Script', Helvetica, sans-serif;
-                color: yellow;
-                text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-            }
-            
-            #menuScroller {
-                text-align: center;
-                vertical-align: middle;
-                margin: 0 auto;
-                top: 75vh;
-                width: 125px;
-                height: 50px;
-                background-color: transparent;
-                font: 400 25px/1.3 'Oleo Script', Helvetica, sans-serif;
-                color: yellow;
-                text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-                z-index: 6;
-                
-            }
-            
-            #specialsBanner{
-                text-align: center;
-                vertical-align: middle;
-                width: 100vw;
-                height: 35vh;
-                color: aliceblue;
-                background-color: cornflowerblue;
-                background: url(http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/11/pies.jpg);
-                background-size: cover;
-                position: absolute;
-            }
-            
-            #menu{
-                text-align: center;
-                vertical-align: middle;
-                height: 100vh;
-                width: 100vw;
-                top:35vh;
-                background-color: yellow;
-                background: url(http://2geekswhoeat.com/wp-content/uploads/2017/04/Rogue-One-Party-1.jpg);
-                background-size: cover;
-                position: absolute;
-            }
-            
-            #sideBar{
-                text-align: center;
-                vertical-align: middle;
-                height: 100vh;
-                width: 25vw;
-                top:35vh;
-                background-color:bisque;
-                background: url(https://media1.giphy.com/media/knnN0jlDc1zVe/giphy.gif) no-repeat center center;
-                background-size: cover;
-                position: absolute;
-                z-index: 20;
-            }
-            
-            /* BOTTOM SECTION */
-            
-            #staffAbout{
-                width: 100vw;
-                height: 75vh;
-                background-color: #212338;
-                text-align: center;
-                font: 400 20px/1.3 'Oleo Script', Helvetica, sans-serif;
-                color: azure;
-                text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-                z-index: 10;
-            }
-            
-            .staff{
-                width:27vw;
-                height:15vh;
-                text-align: left;
-            }
-            .staff2{
-                width:27vw;
-                height:15vh;
-                text-align: right;
-            }
-            
-            .staffPic{
-                height: 125px;
-                max-width: 125px;
-                width: 250px;
-                background-size: cover;
-                background-repeat: no-repeat;
-                border: 5px azure;
-                border-style: dotted;
-                border-radius: 75px;
-                left:-20;
-                position: fixed;
-                
-            }
-            
-            #moham{
-                margin:0 auto;
-            }
-            
-            .bio{
-                margin: 0 0 0 16%;
-                position: fixed;
-            }
-            
-            #frontEndTeam{
-                top:20px;
-                position: relative;
-            }
-            #backEndTeam{
-                top:10px;
-                position: relative;
-            }
-            
-            .staffLeft{
-                margin:5% 0 0 10%;
-            }
-            
-            .staffRight{
-                margin:5% 0 0 30%;
-            }
-            
-            /* GROUPS */
-            
-            #group2{
-                background-color: yellow;
-                z-index: 500;
-            }
-            
-            
-        </style>
     </head>
     
     <body>
         
         <div id="homeBg" class="parallax">
-            
             <div id="group1" class="parallax__group">
                 <div id="parallaxBg" class="parallax__layer parallax__bg">BACKGROUND PARALLAX LAYER</div>
 
                 <div id="homeHeader" class="header parallax__layer parallax__fg">
-
                     <div id="homeLogo" class="kit">ENDOR LOGO</div>
-
                     <div id="login" class="kit">LOGIN</div>
                     <div id="support" class="kit">SUPPORT</div>
-
                     <div id="cart" class="kit">CART</div>
-
                 </div>
                 
-                 <div id="welcomeBanner" class="parallax__layer parallax__fg">
-                    WELCOME TO ENDOR EATS
-                </div>
+                 <div id="welcomeBanner" class="parallax__layer parallax__fg">WELCOME TO ENDOR EATS</div>
                 
-                <div id="menuScroller" class="parallax__layer parallax__fg scroll"> Explore our menu </div>
+                <div id="menuScroller" class="parallax__layer parallax__fg scroll">Explore our menu</div>
             </div>
             
             <div id="group2" class="parallax__group">
                 <div id="specialsBanner" class="parallax__layer parallax__fg">SPECIALS BANNER</div>
-                
                 <div id="menu" class="parallax__layer parallax__fg">MENU HERE</div>
                 <div id="sideBar">SIDE BAR HERE</div>
-                
             </div>
             
             <div id="group3" class="parallax__group">
                 <div id="parallaxBg2" class="parallax__layer parallax__bg">SECOND BACKGROUND PARALLAX LAYER</div>
-            
             </div>
             
             <div id="group4" class="parallax__groupBottom">

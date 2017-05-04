@@ -44,6 +44,10 @@ app.get("/style", function(req,resp){
     resp.sendFile(CLF+"/pageStyle.css")
 });
 
+app.get("/profile", function(req,resp){
+    resp.sendFile(CLF+"/profile.html")
+});
+
 app.post("/logout", function(req, resp){
     req.session.destroy();
     resp.end("success");

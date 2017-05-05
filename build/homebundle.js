@@ -10331,7 +10331,11 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
+    var login = document.getElementById("login")
     
+    login.addEventListener("click", function(){
+        location.href = "/loginPage";
+    })
     
 })
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))

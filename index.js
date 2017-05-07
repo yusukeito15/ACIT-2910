@@ -118,7 +118,7 @@ app.post("/login", function(req,resp){
             }
             
             if(result.rows.length > 0) {
-                req.session.ids = result.rows[0].userid;
+                req.session.ids = result.rows[0].userID;
                 req.session.email = result.rows[0].email;
                 var obj = {
                     status:"success",

@@ -106,7 +106,7 @@ app.post("/login", function(req,resp){
             resp.send(obj);
         }
         
-        client.query("SELECT userid, email FROM users WHERE email = $1 AND password = $2", [email, password], function(err, result){
+        client.query("SELECT userID, email FROM users WHERE email = $1 AND password = $2", [email, password], function(err, result){
             done();
             if(err){
                     console.log(err);

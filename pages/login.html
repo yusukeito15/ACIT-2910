@@ -2,21 +2,10 @@
 <html>
     <head>
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="/css/homeStyle.css">
         <link rel="stylesheet" type="text/css" href="/css/loginStyle.css">
         <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
         <style>
-            
-            /* Hides Scrollbar */
-            ::-webkit-scrollbar { 
-                display: none; 
-            }
-
-            body{
-                margin: 0;
-                background-color: #212338;
-                overflow-x: hidden;
-            }
-
         </style>
     </head>
     
@@ -42,10 +31,19 @@
                 <label id="registerText">Don't have an account?</label>
                 <div>
                     <button id='registerBut'>Register Below!!</button>
+                    <a href="#regBox"><span>Register Below!</span></a>
                 </div>
             </div>
-            
+            <div id="regBox">
+                <input id="name" type="text" placeholder="Name" />
+                <input id="bday" type="text" placeholder="Birthday in yy/mm/dd" />
+                <input id="question" type="text" placeholder="A Question To Log In" />
+                <input id="answer" type="text" placeholder="Your Answer To That Question" />
+                <button id='submitBut'>SUBMIT</button>
+            </div>
         </div>
+        
+        
         
         
         <div id="randomBox">

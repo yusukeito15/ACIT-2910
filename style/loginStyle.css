@@ -1,3 +1,14 @@
+/* Hides Scrollbar */
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+body{
+    margin: 0;
+    background-color: #212338;
+    overflow-x: hidden;
+}
+
 /* Top Section */
 
 #homeLogo{
@@ -74,7 +85,7 @@
     text-shadow: 1px 1px grey;
     color: orange;
     display:inline-block;
-    position: absolute;
+    position: relative;
     transition: 0.5s;
     top:100px;
     left:40vw;
@@ -100,7 +111,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 8px;
     transition-duration: 0.4s;
 }
@@ -141,4 +152,79 @@
     width: 100px;
     font-size: 20px;
     position: relative;
+    background-color: #4CAF50; /* Green */
+    border: 2px solid #000000; /* Blue */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#registerBut:hover {
+    background-color: #0042FF; /* Blue */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#registerBut:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* Register Section */
+
+#regBox{
+    position: relative;
+    display: inline-block;
+    margin: 70vh 0vh 70vh 0vh;
+}
+
+#name{
+    font-size: 18px;
+    width: 300px;
+}
+
+#bday{
+    font-size: 18px;
+    width: 300px;
+}
+
+#question{
+    font-size: 18px;
+    width: 300px;
+}
+
+#answer{
+    font-size: 18px;
+    width: 300px;
+}
+
+#submitBut{
+    background-color: #4CAF50; /* Green */
+    border: 2px solid #000000; /* Blue */
+    color: white;
+    padding: 15px 32px;
+    position:relative;
+    top:50%; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#submitBut:hover {
+    background-color: #0042FF; /* Blue */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#submitBut:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

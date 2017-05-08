@@ -10350,7 +10350,6 @@ return jQuery;
         location.href = "/loginPage";
     });
     
-<<<<<<< HEAD
     $.ajax({
         url:"/xiEzMyEY6LAhMzQhYS0=",
         success:function(resp){
@@ -10359,12 +10358,11 @@ return jQuery;
                 document.getElementById("logout").style.visibility = "visible";
             }
         }
-=======
+
     var profile = document.getElementById("profile")
     profile.addEventListener("click", function(){
         location.href = "/profile";
 
->>>>>>> develop
     });
     
     document.getElementById("logout").addEventListener("click", function(){

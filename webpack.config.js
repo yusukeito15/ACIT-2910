@@ -6,7 +6,8 @@ var bF = path.resolve(__dirname, "build");
 
 var config = {
     entry: {
-        "home":sF+"/home.js"
+        "home":sF+"/home.js",
+        "menu":sF+"/menu.js"
     },
     output:{
         filename:"[name]bundle.js",

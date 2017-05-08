@@ -6,14 +6,15 @@ $(document).ready(function(){
     });
     
     $(function(){
-        $("#menuScroller").click(function(){
-            location.href = "/menu";
+        $("#testDiv").click(function() {
+            document.getElementById("testInfo").style.opacity = "1";
+            console.log("working!");
         });
     });
     
-    $(function(){
+     $(function(){
         $("#login").click(function(){
             location.href = "/profile";
         });
     });
-})
+});

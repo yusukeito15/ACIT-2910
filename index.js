@@ -34,6 +34,8 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
+// all GET request/response function below //
+
 //Root folder
 app.get("/", function(req, resp){
     if(req.session.name){
@@ -47,6 +49,14 @@ app.get("/", function(req, resp){
 app.get("/profile", function(req,resp){
     resp.sendFile(pF+"/profile.html")
 });
+
+app.get("/menu", function(req, resp){
+    resp.sendFile(pF+"/menu.html")
+});
+
+// end of GET section //
+
+// start of all POST request/response functions //
 
 app.post("/logout", function(req, resp){
     req.session.destroy();
@@ -126,6 +136,8 @@ app.post("/login", function(req,resp){
         });
     });
 });
+
+// end of POST functions //
 
 //Listen to port
 server.listen(port, function(err){

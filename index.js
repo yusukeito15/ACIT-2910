@@ -141,7 +141,7 @@ app.post("/login", function(req,resp){
             }
             
             if(result.rows.length > 0) {
-                req.session.ids = result.rows[0].id;
+                req.session.ids = result.rows[0].userID;
                 req.session.email = result.rows[0].email;
                 req.session.type = result.rows[0].type;
                 var obj = {

@@ -185,6 +185,8 @@ body{
     display: inline-block;
     float:left;
     transition: 0.5s;
+    cursor: pointer;
+
 }
 
 #login{
@@ -200,8 +202,28 @@ body{
     transition: 0.5s;
     top:0;
     right:315px;
+    cursor: pointer;
     margin: 10px 0 0 10px; 
 }
+
+#logout{
+    width: 55px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    text-shadow: 1px 1px grey;
+    color: aliceblue;
+    display:inline-block;
+    position: absolute;
+    transition: 0.5s;
+    top:0;
+    right:315px;
+    margin: 10px 0 0 10px; 
+    cursor: pointer;
+    visibility: hidden;
+}
+
 #profile{
     width: 70px;
     height: 50px;
@@ -215,7 +237,9 @@ body{
     top:0;
     right:220px;
     transition: 0.5s;
-    margin: 10px 0 0 10px;    
+    margin: 10px 0 0 10px;
+    cursor: pointer;
+
 }
 #support{
     width: 70px;
@@ -230,7 +254,9 @@ body{
     top:0;
     right:125px;
     transition: 0.5s;
-    margin: 10px 0 0 10px;    
+    margin: 10px 0 0 10px;
+    cursor: pointer;
+
 }
 #cart{
     width: 50px;
@@ -245,7 +271,9 @@ body{
     transition: 0.5s;
     top:0;
     right:50px;
-    margin: 10px 0 0 10px; 
+    margin: 10px 0 0 10px;
+    cursor: pointer;
+
 }
 
 /*Menu Section*/
@@ -275,6 +303,8 @@ body{
     color: yellow;
     text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
     z-index: 6;
+    cursor: pointer;
+
 
 }
 

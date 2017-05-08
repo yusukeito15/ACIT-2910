@@ -1,5 +1,4 @@
 $(document).ready(function(){
-<<<<<<< HEAD
     $(function(){
         $("#homeLogo").click(function() {
             location.href = "/";
@@ -12,11 +11,6 @@ $(document).ready(function(){
         });
     });
     
-    $(function(){
-        $("#login").click(function(){
-            location.href = "/profile";
-        });
-
     var login = document.getElementById("login")
     login.addEventListener("click", function(){
         location.href = "/loginPage";

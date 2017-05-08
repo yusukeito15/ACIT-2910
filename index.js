@@ -34,6 +34,8 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
+// all GET request/response function below //
+
 //Root folder
 app.get("/", function(req, resp){
     if(req.session.name){
@@ -67,6 +69,15 @@ app.get("/profile", function(req,resp){
 app.get("/loginPage", function(req,resp){
    resp.sendFile(pF+"/login.html");
 });
+
+app.get("/menu", function(req, resp){
+    resp.sendFile(pF+"/menu.html")
+});
+
+// end of GET section //
+
+// start of all POST request/response functions //
+
 app.post("/logout", function(req, resp){
     req.session.destroy();
     resp.end("success");
@@ -148,10 +159,14 @@ app.post("/login", function(req,resp){
     });
 });
 
+
 app.get("/xiEzMyEY6LAhMzQhYS0=", function(req, resp){
     //This is basically to send information to the profile page, its an encrypted word (probably doesnt need to be just trying to be sneaky)
     resp.send(req.session);
 })
+
+// end of POST functions //
+
 
 //Listen to port
 server.listen(port, function(err){

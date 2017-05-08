@@ -10346,7 +10346,7 @@ return jQuery;
     
     $(function(){
         $("#login").click(function(){
-            location.href = "/profile";
+            location.href = "/login";
         });
 
     var login = document.getElementById("login")

@@ -10343,11 +10343,6 @@ return jQuery;
             location.href = "/menu";
         });
     });
-    
-    $(function(){
-        $("#login").click(function(){
-            location.href = "/login";
-        });
 
     var login = document.getElementById("login")
     login.addEventListener("click", function(){

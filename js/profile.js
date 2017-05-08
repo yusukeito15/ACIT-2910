@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     document.getElementById("homeLogo").addEventListener("click", function(){
         location.href = "/"
     });
@@ -31,5 +30,4 @@ $(document).ready(function(){
                 }
             })
     });
-    
 });

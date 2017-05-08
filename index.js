@@ -1,5 +1,4 @@
 //REQUIRE ALL MODULES
-
 const express = require("express");
 const session = require("express-session");
 const pg = require("pg");
@@ -69,7 +68,6 @@ app.get("/profile", function(req,resp){
 app.get("/loginPage", function(req,resp){
    resp.sendFile(pF+"/login.html");
 });
-
 app.get("/menu", function(req, resp){
     resp.sendFile(pF+"/menu.html")
 });
@@ -159,14 +157,12 @@ app.post("/login", function(req,resp){
     });
 });
 
-
 app.get("/xiEzMyEY6LAhMzQhYS0=", function(req, resp){
     //This is basically to send information to the profile page, its an encrypted word (probably doesnt need to be just trying to be sneaky)
     resp.send(req.session);
-})
+});
 
 // end of POST functions //
-
 
 //Listen to port
 server.listen(port, function(err){

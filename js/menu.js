@@ -14,7 +14,7 @@ $(document).ready(function(){
     
      $(function(){
         $("#login").click(function(){
-            location.href = "/profile";
+            location.href = "/loginPage";
         });
     });
 });

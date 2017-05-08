@@ -13,8 +13,10 @@ const server = require("http").createServer(app);
 //SETUP SETTINGS FOR DB, SERVER, and FOLDERS
 var io = require("socket.io")(server);
 var pF = path.resolve(__dirname, "pages");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:123456@localhost:5432/DB_NAME";
-const port = process.env.PORT || 12345;
+var dbURL = process.env.DATABASE_URL 
+|| "postgres://postgres:123456@localhost:5432/endor" 
+|| "postgres://localhost:5432/endor"; // this is for mac
+const port = process.env.PORT || 10000;
 
 //REDIRECT /builder to the BUILD FOLDER
 app.use("/builder", express.static("build"));
@@ -43,15 +45,21 @@ app.get("/", function(req, resp){
     resp.sendFile(pF+"/home.html");
     }
 });
-
 app.get("/profile", function(req,resp){
-    resp.sendFile(pF+"/profile.html")
+    resp.sendFile(pF+"/profile.html");
 });
-
+app.get("/loginPage", function(req,resp){
+   resp.sendFile(pF+"/login.html");
+});
 app.post("/logout", function(req, resp){
     req.session.destroy();
     resp.end("success");
 });
+
+app.get("/session", function(req, resp){
+    resp.send(req.session);
+});
+
 app.post("/register", function(req,resp){
     var username = req.body.username;
     var password = req.body.password;
@@ -85,10 +93,9 @@ app.post("/register", function(req,resp){
     });
 });
 app.post("/login", function(req,resp){
-    var username = req.body.username;
-    var password = req.body.password;
     var email = req.body.email;
-    
+    var password = req.body.password;
+ 
     pg.connect(dbURL, function(err, client, done){
         if(err){
             console.log(err);
@@ -99,7 +106,7 @@ app.post("/login", function(req,resp){
             resp.send(obj);
         }
         
-        client.query("SELECT id FROM users WHERE username = ($1) AND password = ($2) AND email = ($3)", [username, password, email], function(err, result){
+        client.query("SELECT userID, email FROM users WHERE email = $1 AND password = $2", [email, password], function(err, result){
             done();
             if(err){
                     console.log(err);
@@ -111,7 +118,8 @@ app.post("/login", function(req,resp){
             }
             
             if(result.rows.length > 0) {
-                req.session.ids = result.rows[0].id;
+                req.session.ids = result.rows[0].userID;
+                req.session.email = result.rows[0].email;
                 var obj = {
                     status:"success",
                 }

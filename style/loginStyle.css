@@ -72,11 +72,6 @@ body{
 }
 
 /* Login Section */
-
-#randomBox {
-    display:none;
-}
-
 #startBox{
     width: 50px;
     height: 50px;
@@ -89,7 +84,7 @@ body{
     position: relative;
     transition: 0.5s;
     top:100px;
-    left:40vw;
+    left:35vw;
     margin: 10px 0 0 10px; 
 }
 
@@ -141,7 +136,7 @@ body{
     display:inline-block;
     position: relative;
     transition: 0.5s;
-    left: -250px;
+    right: 17vw;
     margin: 100px 0px 0px 0px;
 }
 
@@ -181,6 +176,7 @@ body{
     position: relative;
     display: inline-block;
     margin: 70vh 0vh 70vh 0vh;
+    right: 5vw;
 }
 
 #name{
@@ -188,7 +184,27 @@ body{
     width: 300px;
 }
 
+#emailReg{
+    font-size: 18px;
+    width: 300px;
+}
+
+#genderSelect{
+    font-size: 18px;
+    width: 300px;
+}
+
+#planetSelect{
+    font-size: 18px;
+    width: 300px;
+}
+
 #bday{
+    font-size: 18px;
+    width: 300px;
+}
+
+#passReg{
     font-size: 18px;
     width: 300px;
 }

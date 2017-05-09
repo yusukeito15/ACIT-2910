@@ -12,7 +12,7 @@ const server = require("http").createServer(app);
 //SETUP SETTINGS FOR DB, SERVER, and FOLDERS
 var io = require("socket.io")(server);
 var pF = path.resolve(__dirname, "pages");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:123456@localhost:5432/endor"|| "postgres://localhost:5432/endor"; // this is for mac;
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:123456@localhost:5432/endor"|| "postgres://localhost:5432/endor"; // this is for mac
 const port = process.env.PORT || 10000;
 
 //REDIRECT /builder to the BUILD FOLDER
@@ -41,7 +41,7 @@ app.get("/", function(req, resp){
         console.log("User is already logged in");
         resp.sendFile(pF+"/home.html");
     } else{
-    resp.sendFile(pF+"/home.html");
+        resp.sendFile(pF+"/home.html");
     }
 });
 app.get("/profile", function(req,resp){
@@ -62,8 +62,7 @@ app.get("/profile", function(req,resp){
     } else {
         resp.sendFile(pF+"/login.html");
     }
-    */
-    
+    */ 
 });
 app.get("/loginPage", function(req,resp){
    resp.sendFile(pF+"/login.html");

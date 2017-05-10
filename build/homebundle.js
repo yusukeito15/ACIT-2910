@@ -10330,7 +10330,17 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
+const $ = __webpack_require__(0);
+
+function loginFunction(){
+    return "/loginPage";
+}
+
+function numTest(){
+    return 5;
+}
+
+$(document).ready(function(){
     $(function(){
         $("#homeLogo").click(function() {
             location.href = "/";
@@ -10344,11 +10354,9 @@ return jQuery;
     });
     
     var login = document.getElementById("login")
-    
     login.addEventListener("click", function(){
-        location.href = "/loginPage";
+        location.href = loginFunction();
     });
-    
 
     $.ajax({
         url:"/xiEzMyEY6LAhMzQhYS0=",
@@ -10369,17 +10377,17 @@ return jQuery;
                 }
             })
     });
-    
-})
 
     var profile = document.getElementById("profile")
     profile.addEventListener("click", function(){
         location.href = "/profile";
-
     });
 
+});
+module.exports.numTest = numTest;
+module.exports.login = login;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
 
 /***/ })
 /******/ ]);

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10327,7 +10327,8 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const $ = __webpack_require__(0);
@@ -10383,6 +10384,10 @@ $(document).ready(function(){
     var profile = document.getElementById("profile")
     profile.addEventListener("click", function(){
         location.href = "/profile";
+    });
+    
+    document.getElementById("cart").addEventListener("click", function(){
+        location.href = "/cart"
     });
 
 });

@@ -43,4 +43,8 @@ $(document).ready(function(){
                 }
             });
     });
+    
+    document.getElementById("cart").addEventListener("click", function(){
+        location.href = "/cart"
+    });
 });

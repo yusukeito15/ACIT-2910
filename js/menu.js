@@ -11,18 +11,30 @@ $(document).ready(function(){
         });
     });
     
-    $(function(){
-        $("#testDiv").click(function() {
-            document.getElementById("testInfo").style.opacity = "1";
-            console.log("working!");
-        });
-    });
-
-    
      $(function(){
         $("#login").click(function(){
             location.href = "/loginPage";
         });
+    });
+    
+    $.ajax({
+        url:"/xiEzMyEY6LAhMzQhYS0=",
+        success:function(resp){
+            if(resp.type){
+                document.getElementById("login").style.display = "none";
+                document.getElementById("logout").style.visibility = "visible";
+            }
+        }
+    });
+    
+    document.getElementById("logout").addEventListener("click", function(){
+        $.ajax({
+            url:"/logout",
+            type:"post",
+            success:function(resp){
+                location.reload();
+                }
+            })
     });
     
     var profile = document.getElementById("profile")
@@ -30,6 +42,12 @@ $(document).ready(function(){
         location.href = "/profile";
 
     });
+    
+    document.getElementById("cart").addEventListener("click", function(){
+        location.href = "/cart"
+    });
+    
+    //Start of Menu Code
     
     $.ajax({
         url:"/menuDisplay",

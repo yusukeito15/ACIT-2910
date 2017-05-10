@@ -10332,10 +10332,12 @@ return jQuery;
 
 const $ = __webpack_require__(0);
 
+//test function 1
 function loginFunction(){
     return "/loginPage";
 }
 
+//test function 2
 function numTest(){
     return 5;
 }
@@ -10385,7 +10387,7 @@ $(document).ready(function(){
 
 });
 module.exports.numTest = numTest;
-module.exports.login = login;
+module.exports.login = loginFunction;
 
 
 

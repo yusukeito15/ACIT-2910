@@ -1,5 +1,4 @@
 //REQUIRE ALL MODULES
-
 const express = require("express");
 const session = require("express-session");
 const pg = require("pg");
@@ -13,7 +12,7 @@ const server = require("http").createServer(app);
 //SETUP SETTINGS FOR DB, SERVER, and FOLDERS
 var io = require("socket.io")(server);
 var pF = path.resolve(__dirname, "pages");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:123456@localhost:5432/endor"|| "postgres://localhost:5432/endor"; // this is for mac;
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:123456@localhost:5432/endor"|| "postgres://localhost:5432/endor"; // this is for mac
 const port = process.env.PORT || 10000;
 
 //REDIRECT /builder to the BUILD FOLDER
@@ -21,6 +20,9 @@ app.use("/builder", express.static("build"));
 
 //REDIRECT /css to the BUILD FOLDER
 app.use("/css", express.static("style"));
+
+//REDIRECT /fp to the MENU ITEMS FOLDER
+app.use("/fp", express.static("menuItems"));
 
 //SESSION SETTING
 app.use(session({
@@ -42,7 +44,7 @@ app.get("/", function(req, resp){
         console.log("User is already logged in");
         resp.sendFile(pF+"/home.html");
     } else{
-    resp.sendFile(pF+"/home.html");
+        resp.sendFile(pF+"/home.html");
     }
 });
 app.get("/profile", function(req,resp){
@@ -63,16 +65,17 @@ app.get("/profile", function(req,resp){
     } else {
         resp.sendFile(pF+"/login.html");
     }
-    */
-    
+    */ 
 });
 app.get("/loginPage", function(req,resp){
    resp.sendFile(pF+"/login.html");
 });
-
 app.get("/menu", function(req, resp){
-    resp.sendFile(pF+"/menu.html")
+    resp.sendFile(pF+"/menu.html");
 });
+app.get("/cart", function(req, resp){
+    resp.sendFile(pF+"/cart.html");
+})
 
 // end of GET section //
 
@@ -141,7 +144,7 @@ app.post("/login", function(req,resp){
             }
             
             if(result.rows.length > 0) {
-                req.session.ids = result.rows[0].userID;
+                req.session.ids = result.rows[0].userid;
                 req.session.email = result.rows[0].email;
                 req.session.type = result.rows[0].type;
                 var obj = {
@@ -155,18 +158,146 @@ app.post("/login", function(req,resp){
                 }
                 resp.send(obj); 
             }
+            
         });
     });
 });
 
+app.post("/menuDisplay", function(req, resp){
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            var obj = {
+                status: "fail",
+                msg: "CONNECTION FAIL"
+            }
+            resp.send(obj);
+        }
+        client.query("SELECT itemname, price, description, picture, type FROM inventory", [],function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                var obj = {
+                    status:"fail",
+                    msg:"Something went wrong"
+                }
+                resp.send(obj);
+            }
+            if(result.rows.length > 0){
+                resp.send(result.rows);
+            } else {
+                resp.send({status:"fail"})
+            }
+        });
+    });
+});
 
+app.post("/ordering", function(req, resp){
+    var orderName = req.body.itemName;
+    var orderPrice = req.body.price;
+    var orderDate;
+    req.session.orderNum;
+    
+    console.log("SESSION ID "+ req.session.ids);
+    console.log("SESSION NUM "+req.session.orderNum)
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            var obj = {
+                status: "fail",
+                msg: "CONNECTION FAIL"
+            }
+            resp.send(obj);
+        }
+        
+        //checks if their is an existing order
+        client.query("SELECT * FROM orders WHERE userid = ($1)", [req.session.ids], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                var obj = {
+                    status:"fail",
+                    msg:"Something went wrong"
+                }
+                resp.send(obj);
+            }
+            if(result.rows.length > 0){
+                req.session.orderNum = result.rows[0].ordernum;
+                orderDate = result.rows[0].datetime;
+            } else {
+                client.query("INSERT INTO orders (userid) VALUES ($1) RETURNING ordernum, datetime", [req.session.ids], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        var obj = {
+                            status:"fail",
+                            msg:"something went wrong"
+                        }
+                        resp.send(obj);
+                    }
+                    if(result.rows.length > 0){
+                        req.session.orderNum = result.rows[0].ordernum;
+                        orderDate = result.rows[0].datetime;
+                    } else {
+                        resp.send({status:"fail"});
+                    }
+                });
+            }
+        });
+        
+        client.query("INSERT INTO items (orderid, itemname, datetime, itemqty, price) VALUES ($1, $2, $3, $4, $5)", [req.session.orderNum, orderName, orderDate, 1, orderPrice],function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                var obj = {
+                    status:"fail",
+                    msg:"Something went wrong"
+                }
+                resp.send(obj);
+            }
+            
+            resp.send({status:"success"})
+            
+        });
+    });
+});
+app.post("/myCart", function(req, resp){
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            var obj = {
+                status: "fail",
+                msg: "CONNECTION FAIL"
+            }
+            resp.send(obj);
+        }
+        
+        client.query("SELECT * FROM items WHERE orderid = $1", [req.session.orderNum], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                var obj = {
+                    status:"fail",
+                    msg:"SOMETHING WENT WRONG"
+                }
+                resp.send(obj);
+            }
+            
+            if(result.rows.length > 0){
+                resp.send(result.rows);
+            } else {
+                resp.send({status:"fail"});
+            }
+        });
+    });
+});
 app.get("/xiEzMyEY6LAhMzQhYS0=", function(req, resp){
     //This is basically to send information to the profile page, its an encrypted word (probably doesnt need to be just trying to be sneaky)
     resp.send(req.session);
-})
+});
 
 // end of POST functions //
-
 
 //Listen to port
 server.listen(port, function(err){

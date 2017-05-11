@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     document.getElementById("homeLogo").addEventListener("click", function(){
         location.href = "/"
     });
@@ -7,7 +6,6 @@ $(document).ready(function(){
     $.ajax({
         url:"/xiEzMyEY6LAhMzQhYS0=",
         success:function(resp){
-            
             document.getElementById("email").innerHTML = resp.email; 
         }
     });
@@ -32,4 +30,7 @@ $(document).ready(function(){
             })
     });
     
+    document.getElementById("cart").addEventListener("click", function(){
+        location.href = "/cart"
+    });
 });

@@ -28,21 +28,14 @@ $.ajax({
                 if(resp.items[j].orderid == uniqueArr[i]){
                     var nDiv = document.createElement("div");
                     nDiv.itemName = resp.items[j].itemname;
-                    nDiv.innerHTML = this.itemName;
+                    nDiv.innerHTML += resp.items[j].itemname;
   
                     nDiv.addEventListener("click", function(){
                         var itemsDiv = document.createElement("div");
-                        itemsDiv.innerHTML = nDiv.innerHTML;
+                        itemsDiv.innerHTML = this.itemName;
                         cookedItemsContainer.appendChild(itemsDiv);
                         
-                        itemsDiv.addEventListener("click", function(){
-                           var display = document.createElement("div");
-                            display.style.position = 'right';
-                            var fiveMinutes = 5;
-                            startTimer(fiveMinutes, display);
-                            
-                            itemsDiv.appendChild(display);
-                        });
+                        itemsDiv.addEventListener("click", createTimer(itemsDiv));
                         
                     });
                     orderDivs[i].appendChild(nDiv);
@@ -87,4 +80,14 @@ function startTimer(duration, display) {
     // we don't want to wait a full second before the timer starts
     timer();
     setInterval(timer, 1000);
+}
+
+function createTimer(itemsDiv){
+    var display = document.createElement("div");
+    display.style.position = 'right';
+    var fiveMinutes = 5;
+    startTimer(fiveMinutes, display);
+    itemsDiv.appendChild(display);
+    
+    removeEventListener('click', createTimer);
 }

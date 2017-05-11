@@ -41,6 +41,7 @@ $.ajax({
                     orderDivs[i].appendChild(nDiv);
                     }
                 }
+                
             }
             
         } else {

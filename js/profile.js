@@ -30,6 +30,10 @@ $(document).ready(function(){
             })
     });
     
+    document.getElementById("cart").addEventListener("click", function(){
+        location.href = "/cart"
+    });
+    
     $(function(){
         $("#accView").click(function() {
             document.getElementById("accBox").style.display = "inline";

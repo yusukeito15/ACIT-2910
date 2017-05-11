@@ -128,20 +128,20 @@ $(document).ready(function(){
                     document.getElementById("testInfo").appendChild(orderButton);
                     console.log("working!");
                                         
-                    ndiv.title = this.title;
-                    ndiv.price = this.price;
+                    var title = this.title;
+                    var price = this.price;
                     
                     orderButton.addEventListener("click", function(){
                         $.ajax({
                             url:"/ordering",
                             type:"post",
                             data:{
-                                itemName: ndiv.title,
-                                price: ndiv.price,
+                                itemName: title,
+                                price: price,
                             },
                             success:function(resp){
                                 if(resp.status == "success"){
-                                    alert(ndiv.title + " has been added to your order!")
+                                    alert(title + " has been added to your order!")
                                 } else if(resp.status == "fail"){
                                     alert("Okay alex that didnt work")
                                 }

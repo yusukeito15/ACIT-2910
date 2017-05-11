@@ -86,10 +86,11 @@ app.post("/logout", function(req, resp){
     resp.end("success");
 });
 app.post("/register", function(req,resp){
-    //var username = req.body.username;
     var password = req.body.password;
     var email = req.body.email;
     var type = "customer";
+    var loc = req.body.location;
+    var gender = req.body.gender;
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
@@ -100,21 +101,40 @@ app.post("/register", function(req,resp){
             }
             resp.send(obj);
         }
-        
-        client.query("INSERT INTO users (type, password, email) VALUES ($1, $2, $3)", [type, password, email], function(err, result){
+        client.query("SELECT * FROM users WHERE email = ($1)", [email], function(err, result){
             done();
             if(err){
-                console.log(err);
+                    console.log(err);
+                    var obj = {
+                        status:"fail",
+                        msg:"Something went wrong"
+                    }
+                    resp.send(obj);
+            }
+            
+            if(result.rows.length == 0){
+                client.query("INSERT INTO users (email, password, location, type, gender) VALUES ($1, $2, $3, $4, $5)", [email, password, loc, type, gender], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        var obj = {
+                            status:"fail",
+                            msg:"SOMETHING WENT WRONG"
+                        }
+                        resp.send(obj);
+                    }
+                    var obj = {
+                        status: "success"
+                    }
+                    resp.send(obj);
+                });
+            } else {
                 var obj = {
-                    status:"fail",
-                    msg:"SOMETHING WENT WRONG"
+                    status:"fail"
                 }
                 resp.send(obj);
             }
-            var obj = {
-                status: "success"
-            }
-            resp.send(obj);
+
         });
     });
 });

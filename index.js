@@ -312,6 +312,38 @@ app.post("/myCart", function(req, resp){
         });
     });
 });
+
+app.post("/changeMyPass", function(req, resp){
+    var confirmPass = req.body.confirmPass;
+    
+    pg.connect(dbURL, function(err, client, done){
+       if(err){
+           console.log(err);
+           var obj = {
+               status:"fail",
+               msg:"CONNECTION FAIL"
+           }
+           resp.send(obj);
+        }
+        
+        client.query("UPDATE users SET password=($1) WHERE userid=($2)", [confirmPass, req.session.ids], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                var obj = {
+                   status:"fail",
+                   msg:"invalid"
+                }
+                resp.send(obj);
+            }
+                     
+            var obj = {
+                status:"success"
+            }
+            resp.send(obj);
+        });
+    });
+});
 app.get("/xiEzMyEY6LAhMzQhYS0=", function(req, resp){
     //This is basically to send information to the profile page, its an encrypted word (probably doesnt need to be just trying to be sneaky)
     resp.send(req.session);

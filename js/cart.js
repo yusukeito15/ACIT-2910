@@ -47,7 +47,7 @@ $(document).ready(function(){
     });
     
     document.getElementById("cart").addEventListener("click", function(){
-        location.href = "/cart"
+        location.href = "/cart";
     });
     
                             /* START OF CART.JS JAVASCRIPT */
@@ -66,6 +66,14 @@ $(document).ready(function(){
             
             document.getElementById("totalPrice").innerHTML = "Total Price: $" + totalprice;
         }
+    });
+    
+    $(".toggle-icon").click(function() {
+      $('#nav-container').toggleClass("pushed");
+    });
+    
+    document.getElementById("muteBut").addEventListener("click", function(){
+        document.getElementById("musicBox").innerHTML = "";
     });
     
     

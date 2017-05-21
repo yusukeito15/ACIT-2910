@@ -540,6 +540,7 @@ app.post("/removeItems", function(req,resp){
 });
 //End of Kitchen related POSTs
 
+// Profile
 app.post("/changeMyPass", function(req, resp){
     var confirmPass = req.body.confirmPass;
     
@@ -572,6 +573,7 @@ app.post("/changeMyPass", function(req, resp){
     });
 });
 
+// Start of Admin
 app.post("/addMyItem", function(req,resp){
     var itemName = req.body.itemName;
     var itemPrice = req.body.itemPrice;    
@@ -590,21 +592,39 @@ app.post("/addMyItem", function(req,resp){
            resp.send(obj);
         }
         
-        client.query("INSERT INTO inventory (itemName, price, description, qty, type, picture) VALUES ($1, $2, $3, $4, $5, $6)", [itemName, itemPrice, itemDesc, itemQty, itemType, itemPic], function(err, result){
+        client.query("SELECT * FROM inventory WHERE itemname = ($1)", [itemName], function(err, result){
             done();
             if(err){
-                console.log(err);
+                    console.log(err);
+                    var obj = {
+                        status:"fail",
+                        msg:"Something went wrong"
+                    }
+                    resp.send(obj);
+            }
+            
+            if(result.rows.length == 0){
+                client.query("INSERT INTO inventory (itemName, price, description, qty, type, picture) VALUES ($1, $2, $3, $4, $5, $6)", [itemName, itemPrice, itemDesc, itemQty, itemType, itemPic], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        var obj = {
+                            status:"fail",
+                            msg:"SOMETHING WENT WRONG"
+                        }
+                        resp.send(obj);
+                    }
+                    var obj = {
+                        status: "success"
+                    }
+                    resp.send(obj);
+                });
+            } else {
                 var obj = {
-                   status:"fail",
-                   msg:"Your value(s) is/are invalid"
+                    status:"fail"
                 }
                 resp.send(obj);
             }
-                     
-            var obj = {
-                status:"success"
-            }
-            resp.send(obj);
         });
     });
 });
@@ -636,7 +656,7 @@ app.post("/getItem", function(req, resp){
 });
 
 app.post("/changeThePrice", function(req, resp){
-    var searchName = req.body.searchName;
+    var changeName = req.body.changeName;
     var newPrice = req.body.newPrice;
     
     pg.connect(dbURL, function(err, client, done){
@@ -649,24 +669,93 @@ app.post("/changeThePrice", function(req, resp){
            resp.send(obj);
         }
         
-        client.query("UPDATE inventory SET price=($1) WHERE itemname=($2)", [newPrice, searchName], function(err, result){
+        client.query("SELECT * FROM inventory WHERE itemname = ($1)", [changeName], function(err, result){
             done();
             if(err){
-                console.log(err);
+                    console.log(err);
+                    var obj = {
+                        status:"fail",
+                        msg:"Something went wrong"
+                    }
+                    resp.send(obj);
+            }
+            
+            if(result.rows.length == 1){
+                client.query("UPDATE inventory SET price=($1) WHERE itemname=($2)", [newPrice, changeName], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        var obj = {
+                            status:"fail",
+                            msg:"SOMETHING WENT WRONG"
+                        }
+                        resp.send(obj);
+                    }
+                    var obj = {
+                        status: "success"
+                    }
+                    resp.send(obj);
+                });
+            } else {
                 var obj = {
-                   status:"fail",
-                   msg:"invalid"
+                    status:"fail"
                 }
                 resp.send(obj);
             }
-                     
-            var obj = {
-                status:"success"
-            }
-            resp.send(obj);
         });
     });
 });
+
+app.post("/removeMyItem", function(req,resp){
+    var changeNameRM = req.body.changeNameRM;
+
+    pg.connect(dbURL, function(err, client, done){
+       if(err){
+           console.log(err);
+           var obj = {
+               status:"fail",
+               msg:"CONNECTION FAIL"
+           }
+           resp.send(obj);
+        }
+        
+        client.query("SELECT * FROM inventory WHERE itemname = ($1)", [changeNameRM], function(err, result){
+            done();
+            if(err){
+                    console.log(err);
+                    var obj = {
+                        status:"fail",
+                        msg:"Something went wrong"
+                    }
+                    resp.send(obj);
+            }
+            
+            if(result.rows.length == 1){
+                client.query("DELETE FROM inventory WHERE itemname = ($1)", [changeNameRM], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        var obj = {
+                            status:"fail",
+                            msg:"SOMETHING WENT WRONG"
+                        }
+                        resp.send(obj);
+                    }
+                    var obj = {
+                        status: "success"
+                    }
+                    resp.send(obj);
+                });
+            } else {
+                var obj = {
+                    status:"fail"
+                }
+                resp.send(obj);
+            }
+        });
+    });
+});
+// End of Admin
 
 app.get("/xiEzMyEY6LAhMzQhYS0=", function(req, resp){
     //This is basically to send information to the profile page, its an encrypted word (probably doesnt need to be just trying to be sneaky)

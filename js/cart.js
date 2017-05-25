@@ -121,9 +121,7 @@ $(document).ready(function(){
         hits++;
     });
     
-    document.getElementById("muteBut").addEventListener("click", function(){
-        document.getElementById("musicBox").innerHTML = "";
-    });
+    document.getElementById("bgm").src = "/bgm";
     
     
 });

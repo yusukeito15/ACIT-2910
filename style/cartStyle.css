@@ -221,14 +221,7 @@ body{
     visibility: hidden;
 }
 
-/* Music */
-#musicBox{
-    display: block;
-    visibility: hidden;
-}
-
-#muteBut{
-    font-size: 10px;
-    position: absolute;
-    left: 100%;
+#bgm{
+    position: relative;
+    bottom: -100px;
 }

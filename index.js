@@ -28,6 +28,10 @@ app.use('/bjs', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
 app.use('/bjs', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/bcss', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
+app.get("/bgm", function(req,resp){
+    resp.sendFile(pF+"/background.mp3")
+})
+
 //Used for later in the project to ensure sockets are always have the right array to work with
 var arr = {
     kitchen: [],

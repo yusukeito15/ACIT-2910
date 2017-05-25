@@ -37,7 +37,8 @@ $(document).ready(function(){
     var viewSearch = document.getElementById("viewSearch");
     var addMenu = document.getElementById("addMenu");
     var editSearch = document.getElementById("editSearch"); 
-    var viewReport = document.getElementById("viewReport"); 
+    var viewReport = document.getElementById("viewReport");
+    var viewSalesByDay = document.getElementById("viewDaySales");
     
     // Second level div
     var result = document.getElementById("result");
@@ -163,6 +164,15 @@ $(document).ready(function(){
         });
     });
     
+    // First Level Sales By Day Buttton
+    document.getElementById("salesByDay").addEventListener("click", function(){
+        clearScreen();
+        
+        viewSalesByDay.style.display = "inherit";
+        result.appendChild(viewSalesByDay);
+        daysSales();
+        menuText.innerHTML = "SALES BY DAY";
+    });
     // Second Level Search Item button
     $(function(){
         $("#viewFind").click(function() {
@@ -484,5 +494,34 @@ $(document).ready(function(){
     function clearScreen() {
         result.innerHTML = "";
         reportInfo.style.display = "none";
+    }
+    
+    function daysSales(){
+        var x = [];
+        var y = [];
+         
+        $.ajax({
+            url:"/SalesByDay",
+            type:"post",
+            success:function(resp){
+                for(var i=0; i<resp.length; i++){
+                    var date = resp[i].date;
+                    var dateShortened = date.substring(0,10);
+                    x.push(dateShortened);
+                    y.push(resp[i].total);
+                }
+                var traces = [
+                    {
+                        x: x,
+                        y: y,
+                        type: 'bar'
+                    }
+                    ];
+
+                Plotly.newPlot('viewDaySales', traces, {title: "Sales By Day"});
+                
+            }
+        });
+
     }
 });
